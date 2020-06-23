@@ -7,7 +7,7 @@ class Server:
     def __init__(self):
         host = socket.gethostname()
         host_ip = socket.gethostbyname(host)        
-        print(f'Hostname: {host} \nIP: {host_ip}')
+        print('Hostname: {} \nIP: {}'.format(host, host_ip))
 
     def get_cpu_percent(self):
         """Return CPU percent
@@ -21,7 +21,7 @@ class Server:
         """Retrurn all process
 
         Returns:
-            [type]: [description]
+            list: list of all processes
         """ 
         processes = []
         for process in psutil.process_iter():
@@ -31,20 +31,20 @@ class Server:
         return processes
 
     def get_process(self, pid):
-        """[summary]
+        """Return a process using the id
 
         Args:
-            pid (int): [description]
+            pid (int): process id
 
         Returns:
-            [type]: [description]
+            psutil.Process: Objetct psutil Process
         """
         return psutil.Process(pid)
 
     def kill_process(self, process):
-        """[summary]
+        """Kill a process using an instance psutil.Process
 
         Args:
-            process ([type]): [description]
+            process (instance psutil.Process): instance psutil.Process
         """
         process.kill()
