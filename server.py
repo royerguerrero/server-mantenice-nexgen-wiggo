@@ -1,6 +1,5 @@
 import socket
 import psutil
-from tabulate import tabulate
 
 class Server:
     """Return data about your server"""
@@ -19,25 +18,33 @@ class Server:
         return psutil.cpu_percent()
 
     def get_processes(self):
-        """[summary]
+        """Retrurn all process
 
         Returns:
             [type]: [description]
-        """
+        """ 
         processes = []
         for process in psutil.process_iter():
-            process_info = process.as_dict(attrs=['pid', 'name']) 
+            process_info = process.as_dict(attrs=['pid', 'name', 'cpu_percent']) 
             processes.append(process_info)
 
-        return tabulate(processes, headers='keys')
+        return processes
 
     def get_process(self, pid):
         """[summary]
 
         Args:
-            pid ([type]): [description]
+            pid (int): [description]
 
         Returns:
             [type]: [description]
         """
         return psutil.Process(pid)
+
+    def kill_process(self, process):
+        """[summary]
+
+        Args:
+            process ([type]): [description]
+        """
+        process.kill()
