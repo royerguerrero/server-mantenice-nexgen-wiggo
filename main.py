@@ -2,11 +2,11 @@ from server import Server
 
 def main():
     servidor = Server()
-    if servidor.get_cpu_percent() >= 95.0:
-        processes = servidor.get_processes()
-        processes_found = [servidor.get_process(ps['pid']) for ps in processes if ps['name'] == 'python3']
-        for ps in processes_found:
-            servidor.kill_process(ps)
+    processes = servidor.get_processes()
+    process_to_kill = 'php'
+    processes_found = [servidor.get_process(ps['pid']) for ps in processes if ps['name'] == process_to_kill]
+    for ps in processes_found:
+        servidor.kill_process(ps)
 
 
 if __name__ == '__main__':
