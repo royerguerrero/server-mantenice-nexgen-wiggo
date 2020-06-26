@@ -4,7 +4,7 @@ from datetime import datetime
 def log_generator(processs_to_kill, processes_found, processes_killed):
     date = datetime.now()
     date = date.strftime('%B %dth, %Y at %X')
-    PATH_LOG = '/var/log/server_cleaner_log.txt'
+    PATH_LOG = '/var/log/server_cleaner.log'
     
     with open(PATH_LOG, 'a') as f:
         f.write('**SERVER CLEANER** Start on {}\n'.format(date))
